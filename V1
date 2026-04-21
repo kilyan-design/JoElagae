@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo Élagage | Expert en Élagage et Abattage Haut de Gamme</title>
+    <meta name="description" content="Jo Élagage, votre expert acrobate pour l'élagage, l'abattage et l'entretien de parcs et jardins. Interventions sécurisées et maîtrise parfaite.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* Variables Premium */
+        :root {
+            --primary-color: #1a3c28; /* Vert forêt profond */
+            --secondary-color: #c5a059; /* Or cuivré premium */
+            --text-dark: #2c2c2c;
+            --text-light: #f5f5f5;
+            --bg-light: #faf9f6;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            color: var(--text-light);
+        }
+        header.scrolled {
+            background: var(--primary-color);
+            padding: 15px 5%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .logo { font-size: 1.8rem; font-weight: 700; letter-spacing: 2px; color: var(--secondary-color); }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 600; text-transform: uppercase; font-size: 0.9rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--secondary-color); }
+        .contact-btn {
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .contact-btn:hover { background: #a68545; color: white !important; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 60, 40, 0.6);
+        }
+        .hero-content {
+            position: relative; z-index: 1; color: var(--text-light); max-width: 800px; padding: 20px;
+        }
+        .hero-content h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
+        .btn-gold {
+            background: var(--secondary-color); color: white; padding: 15px 35px; border: none;
+            border-radius: 5px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+            transition: var(--transition); display: inline-block;
+        }
+        .btn-gold:hover { background: white; color: var(--secondary-color); transform: translateY(-3px); }
+
+        /* Sections */
+        section { padding: 80px 5%; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--primary-color); margin-bottom: 50px; }
+        .section-title span { color: var(--secondary-color); }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;
+        }
+        .service-card {
+            background: white; border-radius: 10px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition);
+        }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        .service-img { height: 250px; width: 100%; object-fit: cover; }
+        .service-info { padding: 25px; }
+        .service-info h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary-color); }
+        
+        /* Interactive Forms Section (Devis & Rappel) */
+        .forms-container {
+            display: flex; gap: 40px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap;
+        }
+        .form-box {
+            flex: 1; min-width: 300px; background: white; padding: 40px; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-top: 5px solid var(--secondary-color);
+        }
+        .form-box h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-color); }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .input-group input, .input-group select {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;
+            font-family: inherit; font-size: 1rem;
+        }
+        .input-group input:focus, .input-group select:focus {
+            outline: none; border-color: var(--secondary-color);
+        }
+        #simulation-result {
+            margin-top: 20px; padding: 15px; background: #f0f7f4; border-left: 4px solid var(--secondary-color);
+            font-weight: 600; display: none; color: var(--primary-color);
+        }
+
+        /* Testimonials */
+        .testimonials { background: var(--primary-color); color: white; }
+        .testimonials .section-title { color: white; }
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .review-card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px); }
+        .stars { color: var(--secondary-color); margin-bottom: 15px; }
+        .review-text { font-style: italic; margin-bottom: 20px; font-size: 0.95rem; }
+        .reviewer { font-weight: 600; display: flex; align-items: center; gap: 10px; }
+
+        /* Footer */
+        footer { background: #111; color: white; padding: 50px 5% 20px; text-align: center; }
+        .footer-info { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; margin-bottom: 40px; }
+        .footer-info div i { font-size: 2rem; color: var(--secondary-color); margin-bottom: 15px; }
+
+        /* Custom Alert Modal */
+        #custom-alert {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .alert-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            animation: popIn 0.3s ease-out;
+        }
+        .alert-content i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        .alert-content h4 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .alert-content p {
+            color: var(--text-dark);
+            margin-bottom: 25px;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Mobile First Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute; top: 100%; left: -100%; width: 100%; background: var(--primary-color);
+                flex-direction: column; align-items: center; padding: 20px 0; transition: var(--transition);
+            }
+            .nav-links.active { left: 0; }
+            .menu-toggle { display: block; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .forms-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">JO ÉLAGAGE</div>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links">
+            <li><a href="#services" onclick="toggleMenu()">Services</a></li>
+            <li><a href="#avis" onclick="toggleMenu()">Avis</a></li>
+            <li><a href="#simulation" onclick="toggleMenu()">Devis</a></li>
+            <li><a href="#rappel" class="contact-btn" onclick="toggleMenu()"><i class="fas fa-phone"></i> 06 63 09 23 79</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+            <h1>L'Excellence au Service de Vos Arbres</h1>
+            <p>Élagage, abattage délicat et entretien d'espaces verts. Un acrobate hors pair pour des interventions maîtrisées en toute sécurité.</p>
+            <a href="#simulation" class="btn-gold">Simuler mon devis</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title" data-aos="fade-up">Nos <span>Prestations</span></h2>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1592424001923-281b379e5eb2?auto=format&fit=crop&w=600&q=80" alt="Élagage" class="service-img">
+                <div class="service-info">
+                    <h3>Élagage d'arbres</h3>
+                    <p>Taille douce et de sécurité. Spécialiste des accès difficiles et des grands sujets (pins, chênes...) pour préserver la santé de vos arbres.</p>
+                </div>
+            </div>
+            <!-- Service 2 -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1550931131-029193bda002?auto=format&fit=crop&w=600&q=80" alt="Abattage" class="service-img">
+                <div class="service-info">
+                    <h3>Abattage & Démontage</h3>
+                    <p>Démontage par rétention pour les arbres dangereux ou mal placés, garantissant la sécurité absolue de vos infrastructures.</p>
+                </div>
+            </div>
+            <!-- Service 3 -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Entretien" class="service-img">
+                <div class="service-info">
+                    <h3>Parcs & Jardins</h3>
+                    <p>Création, entretien paysager et débroussaillage professionnel pour mettre en valeur et sécuriser vos extérieurs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forms Section (Simulation & Callback) -->
+    <section id="simulation" style="background: #f5f5f5;">
+        <h2 class="section-title" data-aos="fade-up">Contact & <span>Réservation</span></h2>
+        <div class="forms-container">
+            
+            <!-- Devis Simulator -->
+            <div class="form-box" data-aos="fade-right">
+                <h3><i class="fas fa-calculator" style="color: var(--secondary-color);"></i> Simuler un devis</h3>
+                <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Obtenez une estimation immédiate pour votre projet.</p>
+                
+                <div class="input-group">
+                    <label>Type de prestation</label>
+                    <select id="sim-type">
+                        <option value="elagage">Élagage</option>
+                        <option value="abattage">Abattage complet</option>
+                        <option value="debroussaillage">Débroussaillage</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Nombre d'arbres / Surface</label>
+                    <input type="number" id="sim-qty" min="1" value="1">
+                </div>
+                <div class="input-group">
+                    <label>Accessibilité</label>
+                    <select id="sim-access">
+                        <option value="facile">Facile (terrain dégagé)</option>
+                        <option value="difficile">Difficile (proche toiture, lignes...)</option>
+                    </select>
+                </div>
+                <button class="btn-gold" style="width: 100%;" onclick="calculerDevis()">Estimer le prix</button>
+                <div id="simulation-result"></div>
+            </div>
+
+            <!-- Callback Booking -->
+            <div class="form-box" id="rappel" data-aos="fade-left">
+                <h3><i class="fas fa-phone-volume" style="color: var(--secondary-color);"></i> Être rappelé</h3>
+                <p style="margin-bottom: 20px; font-size: 0.9rem; color: #666;">Réservez un créneau téléphonique, Jo vous rappelle.</p>
+                
+                <form onsubmit="handleFormSubmit(event)">
+                    <div class="input-group">
+                        <label>Votre Nom</label>
+                        <input type="text" required placeholder="Jean Dupont">
+                    </div>
+                    <div class="input-group">
+                        <label>Numéro de téléphone</label>
+                        <input type="tel" required placeholder="06 XX XX XX XX">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <div class="input-group" style="flex: 1;">
+                            <label>Date souhaitée</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="input-group" style="flex: 1;">
+                            <label>Heure</label>
+                            <input type="time" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-gold" style="width: 100%; background: var(--primary-color);">Programmer le rappel</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="avis" class="testimonials">
+        <h2 class="section-title" data-aos="fade-up">Ce que disent <span>nos clients</span></h2>
+        <div style="text-align: center; margin-bottom: 30px; font-size: 1.2rem;" data-aos="fade-up">
+            <strong>5,0 / 5</strong> <i class="fas fa-star" style="color: var(--secondary-color);"></i> (9 avis Google)
+        </div>
+        <div class="review-grid">
+            <div class="review-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Jo est un professionnel compétent et efficace. C'est un acrobate hors pair qui connaît son métier. Il a abattu nos pins dans des conditions difficiles avec une maîtrise parfaite de la situation."</p>
+                <div class="reviewer"><i class="fas fa-user-circle fa-2x"></i> Reg</div>
+            </div>
+            <div class="review-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Ayant beaucoup de chênes sur mon terrain, je fais appel à Jonathan depuis plus de 1 an. Il est à l'écoute du client, respecte les délais et cela avec le sourire."</p>
+                <div class="reviewer"><i class="fas fa-user-circle fa-2x"></i> Séguin Jean-Marc</div>
+            </div>
+            <div class="review-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Élagage de 3 gros pins dangereux. Travail au top . Je recommande à 100%."</p>
+                <div class="reviewer"><i class="fas fa-user-circle fa-2x"></i> Matthieu Florencon</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-info">
+            <div>
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Intervention dans toute la région</p>
+                <a href="https://maps.app.goo.gl/gNTSzRgceQURduQTA" target="_blank" style="color: var(--secondary-color); text-decoration: underline;">Voir sur Google Maps</a>
+            </div>
+            <div>
+                <i class="fas fa-phone"></i>
+                <p>06 63 09 23 79</p>
+                <p>Ouvert • Ferme à 20:00</p>
+            </div>
+            <div>
+                <i class="fas fa-envelope"></i>
+                <p>jo.elagage83@gmail.com</p>
+            </div>
+        </div>
+        <p style="border-top: 1px solid #333; padding-top: 20px; color: #777;">&copy; 2026 Jo Élagage. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Custom Alert Modal -->
+    <div id="custom-alert">
+        <div class="alert-content">
+            <i id="alert-icon" class="fas fa-check-circle"></i>
+            <h4 id="alert-title">Succès</h4>
+            <p id="alert-message">Votre message a été envoyé.</p>
+            <button class="btn-gold" onclick="closeAlert()">Fermer</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialisation des animations
+        AOS.init({ once: true, offset: 100 });
+
+        // Changement de style du header au scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Menu Mobile Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            if(window.innerWidth <= 768) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Custom Modal Logic
+        function showAlert(title, message, isError = false) {
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-message').innerText = message;
+            
+            const icon = document.getElementById('alert-icon');
+            if(isError) {
+                icon.className = 'fas fa-exclamation-triangle';
+                icon.style.color = '#d9534f'; // red
+            } else {
+                icon.className = 'fas fa-check-circle';
+                icon.style.color = 'var(--secondary-color)'; // gold
+            }
+
+            document.getElementById('custom-alert').style.display = 'flex';
+        }
+
+        function closeAlert() {
+            document.getElementById('custom-alert').style.display = 'none';
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showAlert(
+                "Réservation confirmée !", 
+                "Votre demande de rappel a bien été enregistrée. Jo vous contactera au créneau choisi."
+            );
+            event.target.reset(); // Vide le formulaire
+        }
+
+        // Logique du simulateur de devis
+        function calculerDevis() {
+            const type = document.getElementById('sim-type').value;
+            const qty = parseInt(document.getElementById('sim-qty').value);
+            const access = document.getElementById('sim-access').value;
+            const resultBox = document.getElementById('simulation-result');
+            
+            if(!qty || qty < 1) {
+                showAlert("Erreur", "Veuillez entrer une quantité ou une surface valide (minimum 1).", true);
+                return;
+            }
+
+            let basePrice = 0;
+            if(type === 'elagage') basePrice = 150;
+            if(type === 'abattage') basePrice = 350;
+            if(type === 'debroussaillage') basePrice = 80;
+
+            let total = basePrice * qty;
+            
+            // Majoration si accès difficile
+            if(access === 'difficile') total *= 1.4;
+
+            // Affichage avec une fourchette (prix indicatif)
+            const min = Math.round(total * 0.9);
+            const max = Math.round(total * 1.2);
+
+            resultBox.style.display = 'block';
+            resultBox.innerHTML = `
+                <span style="font-size:1.2rem;">Estimation indicative :</span><br>
+                <strong style="font-size:1.8rem; color:var(--secondary-color);">${min}€ - ${max}€</strong><br>
+                <span style="font-size:0.8rem; color:#666;">*Ceci est une simulation. Un devis final nécessite une visite sur place.</span>
+            `;
+        }
+    </script>
+</body>
+</html>
